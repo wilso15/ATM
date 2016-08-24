@@ -8,7 +8,6 @@ namespace CashMachine
 {
     public class ATM
     {
-        List<List<int>> atmMoney = new List<List<int>>();
         List<int> ones = new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
         List<int> fives = new List<int> { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
         List<int> tens = new List<int> { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
@@ -17,12 +16,7 @@ namespace CashMachine
         List<int> hundreds = new List<int> { 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 };
         public ATM()
         {
-            atmMoney.Add(ones);
-            atmMoney.Add(fives);
-            atmMoney.Add(tens);
-            atmMoney.Add(twenties);
-            atmMoney.Add(fifties);
-            atmMoney.Add(hundreds);
+
         }
 
         public string GetUserInput()
@@ -82,38 +76,40 @@ namespace CashMachine
                 Console.WriteLine("How much would you like to withdraw?");
                 string userDollarAmountToWithdraw = Console.ReadLine();
                 amountToWithdraw = Int32.Parse(userDollarAmountToWithdraw);
-
-                if (ones.Count > 0 && fives.Count > 0 && tens.Count > 0 && twenties.Count > 0 && fifties.Count > 0 && hundreds.Count > 0)
+                if (amountToWithdraw <= ones.Count && amountToWithdraw <= fives.Count && amountToWithdraw <= tens.Count && amountToWithdraw <= twenties.Count && amountToWithdraw <= fifties.Count && amountToWithdraw <= hundreds.Count)
                 {
-                    while (amountToWithdraw > 100)
+                    if (ones.Count > 0 && fives.Count > 0 && tens.Count > 0 && twenties.Count > 0 && fifties.Count > 0 && hundreds.Count > 0)
                     {
-                        hundreds.Remove(100);
-                        amountToWithdraw -= 100;
-                    }
-                    while (amountToWithdraw > 50)
-                    {
-                        fifties.Remove(50);
-                        amountToWithdraw -= 50;
-                    }
-                    while (amountToWithdraw > 20)
-                    {
-                        twenties.Remove(20);
-                        amountToWithdraw -= 20;
-                    }
-                    while (amountToWithdraw > 10)
-                    {
-                        tens.Remove(10);
-                        amountToWithdraw -= 10;
-                    }
-                    while (amountToWithdraw > 5)
-                    {
-                        fives.Remove(5);
-                        amountToWithdraw -= 5;
-                    }
-                    while (amountToWithdraw >= 1)
-                    {
-                        ones.Remove(1);
-                        amountToWithdraw -= 1;
+                        while (amountToWithdraw >= 100)
+                        {
+                            hundreds.Remove(100);
+                            amountToWithdraw -= 100;
+                        }
+                        while (amountToWithdraw >= 50)
+                        {
+                            fifties.Remove(50);
+                            amountToWithdraw -= 50;
+                        }
+                        while (amountToWithdraw >= 20)
+                        {
+                            twenties.Remove(20);
+                            amountToWithdraw -= 20;
+                        }
+                        while (amountToWithdraw >= 10)
+                        {
+                            tens.Remove(10);
+                            amountToWithdraw -= 10;
+                        }
+                        while (amountToWithdraw >= 5)
+                        {
+                            fives.Remove(5);
+                            amountToWithdraw -= 5;
+                        }
+                        while (amountToWithdraw >= 1)
+                        {
+                            ones.Remove(1);
+                            amountToWithdraw -= 1;
+                        }
                     }
                 }
                 else
